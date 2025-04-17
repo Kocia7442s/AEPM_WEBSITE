@@ -1,0 +1,52 @@
+.formulaire{
+    width: 500px;
+    height: auto;
+    border: 1px solid;
+    border-radius: 8px;
+    background: #ff8a25;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    
+}
+.box{
+    margin: 20px 10px 5px 10px;
+    padding-top: 5px;
+    border-radius: 10px;
+    width: auto;
+}
+.box .titre,
+.box .description,
+.box .file,
+.box .button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.titre,
+.description,
+.file,
+button{
+    flex-direction: column;
+}
+input .titre{
+    width: 100px;
+}
+.input_file,
+.input_titre,
+.input_button,
+textarea{
+    background: #ff4f1f;
+    margin: 0 10px 5px 10px;
+    border: 1px solid;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 500;
+    font-family: "Poppins" , "sans-serif";
+    resize: none;
+}
+body{
+    
+    display: flex;
+    justify-content: center;
+    background: #ff4f1f;
+}
