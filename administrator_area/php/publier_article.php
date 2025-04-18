@@ -19,7 +19,7 @@ if (isset($_POST['envoyer'])) {
             $image_nom = $_FILES['image']['name'];
             $image_tmp = $_FILES['image']['tmp_name'];
 
-            $dossier = '../images/';
+            $dossier = '../../users_area/images/';
             move_uploaded_file($image_tmp, $dossier.$image_nom);
 
             $insererArticle = $bdd->prepare('INSERT INTO articles (titre, description, image) VALUES (?, ?, ?)');

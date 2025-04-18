@@ -122,7 +122,7 @@ $StyleTh="text-shadow: 1px 1px 1px #000; color:white; width:150px; border-right:
     <!-- Boxicons CDN Link -->
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
 </head>
-<body style="background-color: #FAE5D3;">
+<body style="background: #f0f0f0;">
     <!--NavBar-->
     <div class="menu-btn" id="menu-btn">
         <i class='bx bx-menu'></i>

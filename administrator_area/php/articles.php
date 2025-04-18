@@ -28,7 +28,7 @@ if(!$_SESSION['mdp']){
                     <p class="article"><?= nl2br(htmlspecialchars($article['description'])); ?></p>
 
                     <?php if (!empty($article['image'])): ?>
-                        <img class="article-img" src="../images/<?= htmlspecialchars($article['image']); ?>" alt="Image de l'article">
+                        <img class="article-img" src="../../users_area/images/<?= htmlspecialchars($article['image']); ?>" alt="Image de l'article">
                     <?php endif; ?>
 
                     <br><br>

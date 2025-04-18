@@ -8,23 +8,29 @@ $bdd = new PDO('mysql:host=localhost;dbname=espace_admin;', 'root', '');
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../css/SideBar.css">
+    <link rel="stylesheet" href="../css/articles.css">
     <!-- Boxicons CDN Link -->
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
     <title>Afficher tous les articles</title>
 </head>
 <body>
-    <?php 
-        $recupArticles = $bdd->query('SELECT * FROM articles');
-        while($article = $recupArticles->fetch()){
+    <div class="articles-wrapper">
+            <?php 
+            $recupArticles = $bdd->query('SELECT * FROM articles');
+            while($article = $recupArticles->fetch()){
             ?>
-            <div class="article" style="border: 1px solid #000">
-                <h1><?= $article['titre']; ?></h1>
-                <p><?= $article['description']; ?></p>
-            </div>
-            <br>
+                <div class="container">
+                    <h1 class="article"><?= htmlspecialchars($article['titre']); ?></h1>
+                    <p class="article"><?= nl2br(htmlspecialchars($article['description'])); ?></p>
+
+                    <?php if (!empty($article['image'])): ?>
+                        <img class="article-img" src="../images/<?= htmlspecialchars($article['image']); ?>" alt="Image de l'article">
+                    <?php endif; ?>
+                </div>
             <?php
-        }
-    ?>
+            }
+            ?>
+    </div>
 
     <!--NavBar-->
     <div class="menu-btn" id="menu-btn">
