@@ -13,23 +13,7 @@ if(!$mysqli) {
     exit;
 }
 $NomDeSessionAdmin="*****";//mettre ici le nom de $_SESSION de votre site quand l'administrateur est connecté
-/*
-* Module de connexion simplifié.
-* Vous pouvez adapter une variable de session de votre site afin de supprimer ce module
-*/
-    
-    $MotDePasse="*****";//mettre ici un mot de passe
-    //pour vous connecter, entrez votresite.tld/calendrier.php?connexion=votremotdepasse
-    
-    if(isset($_GET['connexion'])) {
-        if($_GET['connexion']==$MotDePasse){
-            $_SESSION[$NomDeSessionAdmin]=1;
-            echo "Connecté avec succès!";
-        }
-    }
-/*
-* Fin du module de connexion
-*/
+
 $jours = array(1=>"Lu",2=>"Ma",3=>"Me",4=>"Je",5=>"Ve",6=>"Sa",0=>"Di");
 if(isset($_GET['annee']) AND preg_match("#^[0-9]{4}$#",$_GET['annee'])){//si on souhaite afficher une autre année, on l'affiche si elle est correcte
     $annee=$_GET['annee'];
@@ -51,27 +35,6 @@ for($mois=1;$mois<=12;$mois++) {
     </tr>
 </table>
 <?php
-//$_SESSION[$NomDeSessionAdmin]=1;
-if(isset($_SESSION[$NomDeSessionAdmin])){
-    if(
-    isset($_GET['jour']) AND preg_match("#^[0-9]{1,2}$#",$_GET['jour']) AND
-    isset($_GET['mois']) AND preg_match("#^[0-9]{1,2}$#",$_GET['mois']) AND
-    isset($_GET['choix']) AND preg_match("#^(0|1)$#",$_GET['choix'])) {
-        if($_GET['choix']==1){
-            if(mysqli_query($mysqli,"INSERT INTO calendrier SET date='".$annee."-".$_GET['mois']."-".$_GET['jour']."'")) {
-                echo "Journée mise en \"réservé\" avec succès !";
-            } else {
-                echo "Une erreur s'est produite:<br />".mysqli_error($mysqli);
-            }
-        } else {
-            if(mysqli_query($mysqli,"DELETE FROM calendrier WHERE date='".$annee."-".$_GET['mois']."-".$_GET['jour']."'")) {
-                echo "Journée mise en \"disponible\" avec succès !";
-            } else {
-                echo "Une erreur s'est produite:<br />".mysqli_error($mysqli);
-            }
-        }
-    }
-}
 $StyleTh="text-shadow: 1px 1px 1px #000;color:white;width:75px;border-right:1px solid black;border-bottom:1px solid black;";
 ?>
 <table style="border:1px solid black;border-collapse:collapse;box-shadow: 10px 10px 5px #888888; position: relative; margin-left: 7.5vw; width: 90vw;">
@@ -195,7 +158,7 @@ $StyleTh="text-shadow: 1px 1px 1px #000;color:white;width:75px;border-right:1px 
         </div>
     </div>
 
-    <a href="../images/reserv.odt">LIEN TELECHARGEMENT</a>
+    <!--<a href="../images/reserv.odt">LIEN TELECHARGEMENT</a>-->
 
     <script>
 
