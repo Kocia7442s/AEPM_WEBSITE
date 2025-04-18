@@ -5,48 +5,42 @@ if(!$_SESSION['mdp']){
     header('Location: login.php');
 }
 
-if(isset($_POST['titre'], $_POST['description'])){
-    if(!empty($_POST['titre']) && !empty($_POST['description']))){
-        $titre = htmlspecialchars($_POST['titre']);
-        $description = nl2br(htmlspecialchars($_POST['description']));
+// Nouvelle variable pour les messages
+$message = "";
 
-        $insererArticle = $bdd->prepare('INSERT INTO articles(titre, description)VALUES(?, ?)');
-        $insererArticle->execute(array($titre, $description));
+// Vérifier si formulaire soumis
+if (isset($_POST['envoyer'])) {
+    $titre = htmlspecialchars($_POST['titre']);
+    $description = htmlspecialchars($_POST['description']);
 
-        echo "L'article a bien été envoyé !";
-    }else{
-        echo "Veuillez compléter tous les champs...";
-    }
-}
-
-// upload photo
-
-if(isset($_POST['envoyer'])){
-    $dossierTempo = $_FILES['image']['tmp_name'];
-    $dossierSite = '../images/'.$_FILES['image']['name'];
-    $deplacer = move_uploaded_file($dossierTempo, $dossierSite);
-    if($deplacer){
+    if (!empty($titre) && !empty($description)) {
         
-        $sql = 'INSERT INTO articles
-                (image) VALUES (:image)';
-        $insererArticle = $bdd->prepare($sql);
-        $retour = $insererArticle->execute(array(
-            ':image' => $_FILES['image']['name']
-        ));
+        if (!empty($_FILES['image']['name'])) {
+            $image_nom = $_FILES['image']['name'];
+            $image_tmp = $_FILES['image']['tmp_name'];
 
-        if($retour){
-            echo 'Image envoyée avec succès';
-        }else{
-            echo 'Une erreur est survenue';
+            $dossier = '../images/';
+            move_uploaded_file($image_tmp, $dossier.$image_nom);
+
+            $insererArticle = $bdd->prepare('INSERT INTO articles (titre, description, image) VALUES (?, ?, ?)');
+            $insererArticle->execute([$titre, $description, $image_nom]);
+        } else {
+            $insererArticle = $bdd->prepare('INSERT INTO articles (titre, description) VALUES (?, ?)');
+            $insererArticle->execute([$titre, $description]);
         }
 
-    }else{
-        echo 'Une erreur est survenue';
+        $_SESSION['message'] = "<p style='color:green; text-align:center;'>✅ Article publié avec succès</p>";
+        header('Location: publier_article.php'); // Redirection pour éviter la double soumission
+        exit();
+
+    } else {
+        $_SESSION['message'] = "<p style='color:green; text-align:center;'>❌ Veuillez remplir tous les champs</p>";
+        header('Location: publier_article.php'); // Redirection pour éviter la double soumission
+        exit();
     }
 }
-
-
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -58,8 +52,14 @@ if(isset($_POST['envoyer'])){
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
-    <form class="formulaire" method ="POST" action="">
+    <form class="formulaire" method ="POST" action="" enctype="multipart/form-data">
         <box class="box">
+            <?php
+                if (isset($_SESSION['message'])) {
+                    echo $_SESSION['message'];
+                    unset($_SESSION['message']); // Supprimer le message juste après l'affichage
+                }
+            ?>
             <div class="titre">
                 <label for="titre">Ajouter un titre à votre article</label>
                 <input class="input_titre" type="text" name="titre" autocomplete="off" style="width: 250px;">
@@ -112,7 +112,7 @@ if(isset($_POST['envoyer'])){
                 <span class="tooltip">Articles</span>
             </li>
             <li>
-                <a href="publier-article.php">
+                <a href="publier_article.php">
                     <i class='bx bx-plus-circle'></i>
                     <span class="links_name">Publier article</span>
                 </a>

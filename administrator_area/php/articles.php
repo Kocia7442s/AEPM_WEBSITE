@@ -17,22 +17,27 @@ if(!$_SESSION['mdp']){
 </head>
 <body>
     <?php 
-        $recupArticles = $bdd->query('SELECT * FROM articles');
-        while($article = $recupArticles->fetch()){
-            ?>
-            <div class="container">
-                <h1 class="article" style="position:relative; left:100px;"><?= $article['titre']; ?></h1>
-                <p class="article" style="position:relative; left:100px;"><?= $article['description']; ?></p>
-                <a class="article" style="position:relative; left:100px;" href="supprimer_article.php?id=<?= $article['id']; ?>">
-                    <button style="color: white; background-color: red; margin-bottom: 10px;">Supprimer l'article</button>
-                </a>
-                <a class="article" style="position:relative; left:100px;" href="modifier_article.php?id=<?= $article['id']; ?>">
-                    <button style="color: white; background-color: blue; margin-bottom: 10px;">Modifier l'article</button>
-                </a>
-            </div>
-            <br>
-            <?php
-        }
+    $recupArticles = $bdd->query('SELECT * FROM articles');
+    while($article = $recupArticles->fetch()){
+    ?>
+        <div class="container" style="border: 1px solid #ccc; padding: 10px; margin: 10px;">
+            <h1 class="article" style="position:relative; left:100px;"><?= htmlspecialchars($article['titre']); ?></h1>
+            <p class="article" style="position:relative; left:100px;"><?= nl2br(htmlspecialchars($article['description'])); ?></p>
+
+            <?php if (!empty($article['image'])): ?>
+                <img src="../images/<?= htmlspecialchars($article['image']); ?>" alt="Image de l'article" style="width:200px; height:auto; position:relative; left:100px;">
+            <?php endif; ?>
+
+            <br><br>
+            <a class="article" style="position:relative; left:100px;" href="supprimer_article.php?id=<?= $article['id']; ?>">
+                <button style="color: white; background-color: red; margin-bottom: 10px;">Supprimer l'article</button>
+            </a>
+            <a class="article" style="position:relative; left:100px;" href="modifier_article.php?id=<?= $article['id']; ?>">
+                <button style="color: white; background-color: blue; margin-bottom: 10px;">Modifier l'article</button>
+            </a>
+        </div>
+    <?php
+    }
     ?>
 
     <!--NavBar-->
