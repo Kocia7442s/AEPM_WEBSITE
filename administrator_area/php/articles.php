@@ -32,7 +32,7 @@ if(!$_SESSION['mdp']){
                     <?php endif; ?>
 
                     <br><br>
-                    <a class="article" href="supprimer_article.php?id=<?= $article['id']; ?>">
+                    <a class="article" href="supprimer_article.php?id=<?= $article['id']; ?>" onclick="return confirm('Es-tu sûr de vouloir supprimer cet article ?');">
                         <button class="supprimer-btn">Supprimer l'article</button>
                     </a>
                     <a class="article" href="modifier_article.php?id=<?= $article['id']; ?>">
