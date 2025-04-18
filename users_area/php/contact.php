@@ -10,6 +10,9 @@
 </head>
 <body>
     <!--NavBar-->
+    <div class="menu-btn" id="menu-btn">
+        <i class='bx bx-menu'></i>
+    </div>
     <div class="sidebar">
         <div class="logo_content">
             <div class="logo">
@@ -69,15 +72,16 @@
 
     <script>
 
-        let btn = document.querySelector("#btn");
-        let sidebar = document.querySelector(".sidebar");
-        let searchBtn = document.querySelector(".bx-search");
+        const sidebar = document.querySelector('.sidebar');
+        const sidebarBtn = document.getElementById('btn'); // bouton dans la sidebar
+        const menuBtn = document.getElementById('menu-btn'); // bouton externe
 
-        btn.addEventListener('click', function(){
+        sidebarBtn.addEventListener('click', () => {
             sidebar.classList.toggle('active');
         });
-        searchBtn.addEventListener('click', function(){
-            sidebar.classList.toggle('active')
+
+        menuBtn.addEventListener('click', () => {
+            sidebar.classList.toggle('active');
         });
 
     </script>

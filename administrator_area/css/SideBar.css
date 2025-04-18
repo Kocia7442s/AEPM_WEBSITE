@@ -1,8 +1,5 @@
-@media only screen and (max-width: 480px) {
-    body {
-      font-size: 12px;
-    }
-  }
+
+
 
 *
 {
@@ -11,15 +8,15 @@
     box-sizing: border-box;
     font-family: "Poppins" , sans-serif;
 }
-body
-{
+body {
     position: relative;
-    min-width: 100vh;
+    min-height: 100vh;
     width: 100%;
 }
 .sidebar
 {
     position: fixed;
+    z-index: 1;
     top: 0;
     left: 0;
     height: 100%;
@@ -28,9 +25,18 @@ body
     padding: 6px 14px;
     transition: all 0.5s ease;
 }
+.home_content {
+    position: relative;
+    z-index: 2; /* Le formulaire au-dessus */
+    min-height: 100vh;
+    left: 78px; /* ou 60px selon l'écran */
+    width: calc(100% - 78px);
+    transition: all 0.5s ease;
+}
 .sidebar.active
 {
     width: 240px;
+    left: 0 !important;
 }
 .sidebar .logo_content .logo
 {
@@ -253,8 +259,64 @@ body
 {
     background: none
 }
-.sidebar.active ~ .home_content
-{
+.sidebar.active ~ .home_content {
+    left: 240px; /* largeur de la sidebar ouverte */
     width: calc(100% - 240px);
-    left: 240px;
+}
+.menu-btn {
+    display: none; /* caché par défaut */
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 1000;
+    background: #ff8a25;
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    color: white;
+    font-size: 24px;
+    text-align: center;
+    line-height: 50px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+}
+
+
+@media only screen and (max-width: 480px) {
+    .sidebar {
+        width: 60px;
+    }
+    .sidebar.active {
+        width: 160px; /* un peu moins large pour téléphone */
+    }
+    .home_content {
+        left: 60px;
+        width: calc(100% - 60px);
+    }
+    .sidebar.active ~ .home_content {
+        left: 160px;
+        width: calc(100% - 160px);
+    }
+}
+@media screen and (max-width: 1050px) {
+    .sidebar {
+        position: absolute; /* Plus fixed */
+        left: -100%; /* Cachée par défaut */
+        width: 240px; /* Quand ouverte */
+        transition: all 0.5s ease;
+    }
+
+    .sidebar.active {
+        left: 0; /* Affichée */
+    }
+
+    .home_content {
+        width: 100%; /* Le formulaire prend toute la place */
+        left: 0;
+    }
+    .menu-btn {
+        display: block; /* il apparaît */
+    }
+
 }

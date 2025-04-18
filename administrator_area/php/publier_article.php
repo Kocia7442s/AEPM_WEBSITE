@@ -50,6 +50,8 @@ if (isset($_POST['envoyer'])) {
     <link rel="stylesheet" href="../css/publier_article.css">
     <!-- Boxicons CDN Link -->
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
     <form class="formulaire" method ="POST" action="" enctype="multipart/form-data">
@@ -83,6 +85,9 @@ if (isset($_POST['envoyer'])) {
     </form>
 
     <!--NavBar-->
+    <div class="menu-btn" id="menu-btn">
+        <i class='bx bx-menu'></i>
+    </div>
     <div class="sidebar">
         <div class="logo_content">
             <div class="logo">
@@ -91,6 +96,7 @@ if (isset($_POST['envoyer'])) {
             </div>
             <i class='bx bx-menu' id="btn"></i>
         </div>
+        
         <ul class="nav_list">
             <li>
                     <i class='bx bx-search' ></i>
@@ -136,7 +142,6 @@ if (isset($_POST['envoyer'])) {
         <div class="profile_content">
             <div class="profile">
                 <div class="profile_details">
-                    <!--<img src="profile.jpg" alt="">-->
                     <div class="name_job">
                         <div class="name">AEPM</div>
                         <div class="job">Salle des fêtes</div>
@@ -148,18 +153,17 @@ if (isset($_POST['envoyer'])) {
     </div>
 
     <script>
+        const sidebar = document.querySelector('.sidebar');
+        const sidebarBtn = document.getElementById('btn'); // bouton dans la sidebar
+        const menuBtn = document.getElementById('menu-btn'); // bouton externe
 
-        let btn = document.querySelector("#btn");
-        let sidebar = document.querySelector(".sidebar");
-        let searchBtn = document.querySelector(".bx-search");
-
-        btn.addEventListener('click', function(){
+        sidebarBtn.addEventListener('click', () => {
             sidebar.classList.toggle('active');
         });
-        searchBtn.addEventListener('click', function(){
-            sidebar.classList.toggle('active')
-        });
 
+        menuBtn.addEventListener('click', () => {
+            sidebar.classList.toggle('active');
+        });
     </script>
 </body>
 </html>

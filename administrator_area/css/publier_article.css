@@ -1,40 +1,57 @@
-.formulaire{
-    width: 500px;
+/* Stylisation des labels */
+label {
+    font-size: 18px; /* Augmente la taille de la police */
+    font-weight: bold; /* Met les labels en gras */
+    color: #333333; /* Change la couleur du texte pour le rendre plus visible */
+    margin-bottom: 5px; /* Ajoute un petit espace sous chaque label */
+    display: block; /* Force le label à être sur une nouvelle ligne */
+}
+
+/* Formulaire */
+.formulaire {
+    width: 95%; /* Prend presque toute la largeur de la page */
+    max-width: 900px; /* Largeur maximale pour éviter une trop grande largeur */
     height: auto;
+    min-height: 500px; /* Hauteur minimale du formulaire */
     border: 1px solid;
     border-radius: 8px;
     background: #ff8a25;
     margin-top: 10px;
     margin-bottom: 10px;
-    
+    padding: 20px; /* Ajoute du padding pour augmenter la taille interne du formulaire */
 }
-.box{
+
+.box {
     margin: 20px 10px 5px 10px;
     padding-top: 5px;
     border-radius: 10px;
     width: auto;
 }
+
 .box .titre,
 .box .description,
 .box .file,
-.box .button{
+.box .button {
     display: flex;
     align-items: center;
     justify-content: center;
 }
+
 .titre,
 .description,
 .file,
-button{
+button {
     flex-direction: column;
 }
-input .titre{
+
+input .titre {
     width: 100px;
 }
+
 .input_file,
 .input_titre,
 .input_button,
-textarea{
+textarea {
     background: #ff4f1f;
     margin: 0 10px 5px 10px;
     border: 1px solid;
@@ -43,10 +60,149 @@ textarea{
     font-weight: 500;
     font-family: "Poppins" , "sans-serif";
     resize: none;
+    padding: 12px; /* Augmente l'espace interne pour les champs de saisie */
 }
-body{
-    
+
+body {
     display: flex;
     justify-content: center;
-    background: #ff4f1f;
+    background: #f0f0f0;
+}
+
+/* Responsive pour les écrans de moins de 1050px */
+@media only screen and (max-width: 1050px) {
+    .formulaire {
+        width: 90%; /* Réduit la largeur à 90% de l'écran */
+        max-width: 700px; /* Largeur maximale pour les tablettes */
+        margin: 10px; /* Ajoute un peu de marge pour ne pas toucher les bords de l'écran */
+        min-height: 600px; /* Hauteur plus grande sur les tablettes */
+    }
+
+    .box {
+        margin: 10px 5px; /* Moins de marge sur les côtés */
+    }
+
+    .input_file,
+    .input_titre,
+    .input_button,
+    textarea {
+        font-size: 14px; /* Réduit la taille de la police sur les petits écrans */
+    }
+
+    .titre,
+    .description,
+    .file,
+    .button {
+        width: 100%; /* Assure que les éléments s'étendent sur toute la largeur disponible */
+    }
+}
+
+/* Responsive pour les écrans de moins de 830px */
+@media only screen and (max-width: 830px) {
+    .formulaire {
+        width: 90%; /* Réduit la largeur à 90% de l'écran */
+        max-width: 600px; /* Largeur maximale pour les tablettes */
+        margin: 10px; /* Ajoute un peu de marge pour ne pas toucher les bords de l'écran */
+        min-height: 600px; /* Hauteur plus grande sur les tablettes */
+    }
+
+    .box {
+        margin: 10px 5px; /* Moins de marge sur les côtés */
+    }
+
+    .input_file,
+    .input_titre,
+    .input_button,
+    textarea {
+        font-size: 14px; /* Réduit la taille de la police sur les petits écrans */
+    }
+
+    .titre,
+    .description,
+    .file,
+    .button {
+        width: 100%; /* Assure que les éléments s'étendent sur toute la largeur disponible */
+    }
+}
+
+/* Responsive pour les écrans de moins de 730px */
+@media only screen and (max-width: 730px) {
+    .formulaire {
+        width: 90%; /* Réduit la largeur à 90% de l'écran */
+        max-width: 500px; /* Largeur maximale pour les tablettes */
+        margin: 10px; /* Ajoute un peu de marge pour ne pas toucher les bords de l'écran */
+        min-height: 600px; /* Hauteur plus grande sur les tablettes */
+    }
+
+    .box {
+        margin: 10px 5px; /* Moins de marge sur les côtés */
+    }
+
+    .input_file,
+    .input_titre,
+    .input_button,
+    textarea {
+        font-size: 14px; /* Réduit la taille de la police sur les petits écrans */
+    }
+
+    .titre,
+    .description,
+    .file,
+    .button {
+        width: 100%; /* Assure que les éléments s'étendent sur toute la largeur disponible */
+    }
+}
+
+/* Responsive pour les écrans de moins de 630px (smartphones) */
+@media only screen and (max-width: 630px) {
+    .formulaire {
+        width: 90%; /* Utilise toute la largeur de l'écran sur les très petits écrans */
+        max-width: 400px; /* Pas de limite de largeur maximale sur les petits écrans */
+        min-height: 700px; /* Hauteur encore plus grande sur les petits écrans */
+    }
+
+    .box {
+        margin: 10px; /* Réduit encore la marge */
+    }
+
+    .input_file,
+    .input_titre,
+    .input_button,
+    textarea {
+        font-size: 12px; /* Taille de police plus petite sur les petits écrans */
+    }
+
+    .titre,
+    .description,
+    .file,
+    .button {
+        width: 100%; /* Assure que les éléments s'étendent sur toute la largeur */
+    }
+}
+
+/* Responsive pour les écrans de moins de 530px (smartphones) */
+@media only screen and (max-width: 530px) {
+    .formulaire {
+        width: 90%; /* Utilise toute la largeur de l'écran sur les très petits écrans */
+        max-width: 300px; /* Pas de limite de largeur maximale sur les petits écrans */
+        min-height: 700px; /* Hauteur encore plus grande sur les petits écrans */
+    }
+
+    .box {
+        margin: 10px; /* Réduit encore la marge */
+    }
+
+    .input_file,
+    .input_titre,
+    .input_button,
+    textarea {
+        font-size: 12px; /* Taille de police plus petite sur les petits écrans */
+    }
+
+    .titre,
+    .description,
+    .file,
+    .button {
+        width: 100%; /* Assure que les éléments s'étendent sur toute la largeur */
+    }
 }

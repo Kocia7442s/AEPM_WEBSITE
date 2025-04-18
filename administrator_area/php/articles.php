@@ -11,36 +11,43 @@ if(!$_SESSION['mdp']){
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../css/SideBar.css">
+    <link rel="stylesheet" href="../css/articles.css">
     <title>Afficher tous les articles</title>
     <!-- Boxicons CDN Link -->
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-    <?php 
-    $recupArticles = $bdd->query('SELECT * FROM articles');
-    while($article = $recupArticles->fetch()){
-    ?>
-        <div class="container" style="border: 1px solid #ccc; padding: 10px; margin: 10px;">
-            <h1 class="article" style="position:relative; left:100px;"><?= htmlspecialchars($article['titre']); ?></h1>
-            <p class="article" style="position:relative; left:100px;"><?= nl2br(htmlspecialchars($article['description'])); ?></p>
+    <div class="articles-wrapper">
+            <?php 
+            $recupArticles = $bdd->query('SELECT * FROM articles');
+            while($article = $recupArticles->fetch()){
+            ?>
+                <div class="container">
+                    <h1 class="article"><?= htmlspecialchars($article['titre']); ?></h1>
+                    <p class="article"><?= nl2br(htmlspecialchars($article['description'])); ?></p>
 
-            <?php if (!empty($article['image'])): ?>
-                <img src="../images/<?= htmlspecialchars($article['image']); ?>" alt="Image de l'article" style="width:200px; height:auto; position:relative; left:100px;">
-            <?php endif; ?>
+                    <?php if (!empty($article['image'])): ?>
+                        <img src="../images/<?= htmlspecialchars($article['image']); ?>" alt="Image de l'article">
+                    <?php endif; ?>
 
-            <br><br>
-            <a class="article" style="position:relative; left:100px;" href="supprimer_article.php?id=<?= $article['id']; ?>">
-                <button style="color: white; background-color: red; margin-bottom: 10px;">Supprimer l'article</button>
-            </a>
-            <a class="article" style="position:relative; left:100px;" href="modifier_article.php?id=<?= $article['id']; ?>">
-                <button style="color: white; background-color: blue; margin-bottom: 10px;">Modifier l'article</button>
-            </a>
-        </div>
-    <?php
-    }
-    ?>
+                    <br><br>
+                    <a class="article" href="supprimer_article.php?id=<?= $article['id']; ?>">
+                        <button class="supprimer-btn">Supprimer l'article</button>
+                    </a>
+                    <a class="article" href="modifier_article.php?id=<?= $article['id']; ?>">
+                        <button class="modifier-btn">Modifier l'article</button>
+                    </a>
+                </div>
+            <?php
+            }
+            ?>
+    </div>
 
     <!--NavBar-->
+    <div class="menu-btn" id="menu-btn">
+        <i class='bx bx-menu'></i>
+    </div>
     <div class="sidebar">
         <div class="logo_content">
             <div class="logo">
@@ -107,15 +114,16 @@ if(!$_SESSION['mdp']){
 
     <script>
 
-        let btn = document.querySelector("#btn");
-        let sidebar = document.querySelector(".sidebar");
-        let searchBtn = document.querySelector(".bx-search");
+        const sidebar = document.querySelector('.sidebar'); 
+        const sidebarBtn = document.getElementById('btn'); // bouton dans la sidebar
+        const menuBtn = document.getElementById('menu-btn'); // bouton externe
 
-        btn.addEventListener('click', function(){
+        sidebarBtn.addEventListener('click', () => {
             sidebar.classList.toggle('active');
         });
-        searchBtn.addEventListener('click', function(){
-            sidebar.classList.toggle('active')
+
+        menuBtn.addEventListener('click', () => {
+            sidebar.classList.toggle('active');
         });
 
     </script>
