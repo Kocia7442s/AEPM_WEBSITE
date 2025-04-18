@@ -95,6 +95,7 @@ $StyleTh="text-shadow: 1px 1px 1px #000;color:white;width:75px;border-right:1px 
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../css/calendrier.css">
+    <link rel="stylesheet" href="../css/Sidebar.css">
     <title>Calendrier de réservation</title>
     <!-- Boxicons CDN Link -->
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
@@ -150,7 +151,6 @@ $StyleTh="text-shadow: 1px 1px 1px #000;color:white;width:75px;border-right:1px 
         <div class="profile_content">
             <div class="profile">
                 <div class="profile_details">
-                    <!--<img src="profile.jpg" alt="">-->
                     <div class="name_job">
                         <div class="name">AEPM</div>
                         <div class="job">Salle des fêtes</div>
