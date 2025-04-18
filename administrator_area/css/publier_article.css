@@ -1,26 +1,73 @@
 /* Stylisation des labels */
 label {
-    font-size: 18px; /* Augmente la taille de la police */
-    font-weight: bold; /* Met les labels en gras */
-    color: #333333; /* Change la couleur du texte pour le rendre plus visible */
-    margin-bottom: 5px; /* Ajoute un petit espace sous chaque label */
-    display: block; /* Force le label à être sur une nouvelle ligne */
+    font-size: 18px;
+    font-weight: bold;
+    color: #333333;
+    margin-bottom: 5px;
+    display: block;
 }
 
-/* Formulaire */
+/* Formulaire principal */
 .formulaire {
-    width: 95%; /* Prend presque toute la largeur de la page */
-    max-width: 900px; /* Largeur maximale pour éviter une trop grande largeur */
-    height: auto;
-    min-height: 500px; /* Hauteur minimale du formulaire */
+    width: 95%;
+    max-width: 900px;
+    min-height: 500px;
     border: 1px solid;
     border-radius: 8px;
     background: #ff8a25;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    padding: 20px; /* Ajoute du padding pour augmenter la taille interne du formulaire */
+    margin: 10px 0;
+    padding: 20px;
 }
 
+.formulaire input[type="file"] {
+    background: #ff4f1f; /* Fond rouge personnalisé */
+    border: 1px solid #fff; /* Bordure blanche */
+    border-radius: 5px;
+    padding: 12px;
+    width: 100%; /* Prend toute la largeur disponible */
+    font-size: 16px;
+    font-family: "Poppins", "sans-serif";
+    outline: none;
+    cursor: pointer;
+}
+
+/* Cacher le texte par défaut et ajouter un bouton personnalisé */
+.formulaire input[type="file"]::-webkit-file-upload-button {
+    background: #ff8a25; /* Couleur de fond du bouton */
+    border: 1px solid #fff; /* Bordure blanche */
+    color: #fff; /* Couleur du texte */
+    padding: 8px 16px; /* Padding pour le bouton */
+    font-size: 16px;
+    font-family: "Poppins", sans-serif;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Effet au survol du bouton input[type="file"] */
+.formulaire input[type="file"]::-webkit-file-upload-button:hover {
+    background: #e67e22; /* Fond orange plus foncé */
+}
+
+/* Stylisation pour les input[type="submit"] dans le formulaire */
+.formulaire input[type="submit"] {
+    background: #ff4f1f; /* Fond rouge personnalisé */
+    color: #fff; /* Texte blanc */
+    border: 1px solid #fff; /* Bordure blanche */
+    padding: 12px 20px; /* Espacement autour du texte */
+    font-size: 16px;
+    font-family: "Poppins", sans-serif;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Effet au survol pour les input[type="submit"] */
+.formulaire input[type="submit"]:hover {
+    background: #e67e22; /* Fond orange plus foncé */
+}
+
+/* Boîtes contenant les champs */
 .box {
     margin: 20px 10px 5px 10px;
     padding-top: 5px;
@@ -35,34 +82,56 @@ label {
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-.titre,
-.description,
-.file,
-button {
     flex-direction: column;
 }
 
-input .titre {
-    width: 100px;
-}
-
-.input_file,
-.input_titre,
-.input_button,
-textarea {
+/* INPUTS TEXT UNIQUEMENT */
+.box input[type="text"] {
     background: #ff4f1f;
+    color: #333;
     margin: 0 10px 5px 10px;
-    border: 1px solid;
+    border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 16px;
     font-weight: 500;
-    font-family: "Poppins" , "sans-serif";
-    resize: none;
-    padding: 12px; /* Augmente l'espace interne pour les champs de saisie */
+    font-family: "Poppins", "sans-serif";
+    padding: 12px;
+    width: 100%;
+    box-sizing: border-box;
+    outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
 }
 
+/* INPUT TEXT quand focus */
+.box input[type="text"]:focus {
+    border-color: #ff8a25;
+    box-shadow: 0 0 8px rgba(255, 138, 37, 0.5);
+}
+
+/* TEXTAREA aussi pour cohérence */
+textarea {
+    background: #ff4f1f;
+    color: #333;
+    margin: 0 10px 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 500;
+    font-family: "Poppins", "sans-serif";
+    padding: 12px;
+    resize: none;
+    width: 100%;
+    box-sizing: border-box;
+    outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+textarea:focus {
+    border-color: #ff8a25;
+    box-shadow: 0 0 8px rgba(255, 138, 37, 0.5);
+}
+
+/* BODY général */
 body {
     display: flex;
     justify-content: center;
@@ -82,9 +151,7 @@ body {
         margin: 10px 5px; /* Moins de marge sur les côtés */
     }
 
-    .input_file,
-    .input_titre,
-    .input_button,
+    .box input[type="text"],
     textarea {
         font-size: 14px; /* Réduit la taille de la police sur les petits écrans */
     }
@@ -110,16 +177,12 @@ body {
         margin: 10px 5px; /* Moins de marge sur les côtés */
     }
 
-    .input_file,
-    .input_titre,
-    .input_button,
+    .box input[type="text"],
     textarea {
         font-size: 14px; /* Réduit la taille de la police sur les petits écrans */
     }
 
-    .titre,
-    .description,
-    .file,
+    .box input[type="text"],
     .button {
         width: 100%; /* Assure que les éléments s'étendent sur toute la largeur disponible */
     }
@@ -138,16 +201,12 @@ body {
         margin: 10px 5px; /* Moins de marge sur les côtés */
     }
 
-    .input_file,
-    .input_titre,
-    .input_button,
+    .box input[type="text"],
     textarea {
         font-size: 14px; /* Réduit la taille de la police sur les petits écrans */
     }
 
-    .titre,
-    .description,
-    .file,
+    .box input[type="text"],
     .button {
         width: 100%; /* Assure que les éléments s'étendent sur toute la largeur disponible */
     }
@@ -165,16 +224,12 @@ body {
         margin: 10px; /* Réduit encore la marge */
     }
 
-    .input_file,
-    .input_titre,
-    .input_button,
+    .box input[type="text"],
     textarea {
         font-size: 12px; /* Taille de police plus petite sur les petits écrans */
     }
 
-    .titre,
-    .description,
-    .file,
+    .box input[type="text"],
     .button {
         width: 100%; /* Assure que les éléments s'étendent sur toute la largeur */
     }
@@ -192,16 +247,35 @@ body {
         margin: 10px; /* Réduit encore la marge */
     }
 
-    .input_file,
-    .input_titre,
-    .input_button,
+    .box input[type="text"],
     textarea {
         font-size: 12px; /* Taille de police plus petite sur les petits écrans */
     }
 
-    .titre,
-    .description,
-    .file,
+    .box input[type="text"],
+    .button {
+        width: 100%; /* Assure que les éléments s'étendent sur toute la largeur */
+    }
+}
+
+/* Responsive pour les écrans de moins de 530px (smartphones) */
+@media only screen and (max-width: 430px) {
+    .formulaire {
+        width: 90%; /* Utilise toute la largeur de l'écran sur les très petits écrans */
+        max-width: 230px; /* Pas de limite de largeur maximale sur les petits écrans */
+        min-height: 700px; /* Hauteur encore plus grande sur les petits écrans */
+    }
+
+    .box {
+        margin: 10px; /* Réduit encore la marge */
+    }
+
+    .box input[type="text"],
+    textarea {
+        font-size: 12px; /* Taille de police plus petite sur les petits écrans */
+    }
+
+    .box input[type="text"],
     .button {
         width: 100%; /* Assure que les éléments s'étendent sur toute la largeur */
     }
