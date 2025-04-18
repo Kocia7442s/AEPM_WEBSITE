@@ -65,7 +65,6 @@
                         <div class="job">Salle des fêtes</div>
                     </div>
                 </div>
-                <a href="logout.php" style="color: white;"><i class='bx bx-log-out' id="log_out"></a></i></a>
             </div>
         </div>
     </div>
