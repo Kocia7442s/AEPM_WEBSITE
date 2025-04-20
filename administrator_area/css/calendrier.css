@@ -1,0 +1,112 @@
+#recap {
+    position: relative;
+    left: 100px;
+    top: 710px;
+    width: 200px;
+}
+.case-reserve {
+    background: #FF8888;
+    width: 15px;
+    height: 15px;
+}
+.case-dispo {
+    background: #88FF88;
+    width: 15px;
+    height: 15px;
+}
+
+.calendrier {
+    border: 1px solid black;
+    border-collapse: collapse;
+    box-shadow: 10px 10px 5px #888888;
+    position: relative;
+    margin-left: 7.5vw;
+    width: 90vw;
+}
+.calendrier caption {
+    font-size: 18px;
+}
+.calendrier caption a {
+    font-size: 50%;
+    vertical-align: middle;
+    text-decoration: none;
+}
+
+.calendrier th {
+    text-shadow: 1px 1px 1px #000;
+    color: white;
+    width: 150px;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+.mois {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.reserve {
+    background: #FF8888;
+    border-bottom: 1px solid #eee;
+}
+
+.dispo {
+    background: #88FF88;
+    border-bottom: 1px solid #eee;
+}
+
+.img-action {
+    width: 13px;
+}
+
+@media screen and (max-width: 768px) {
+    .calendrier {
+        margin-left: 2vw;
+        width: 96vw;
+    }
+
+    .calendrier th {
+        width: 80px;
+        font-size: 10px;
+    }
+
+    .mois {
+        font-size: 10px;
+    }
+
+    .img-action {
+        width: 10px;
+    }
+
+    #recap {
+        left: 10px;
+        top: 20px;
+        width: 150px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .calendrier {
+        margin-left: 1vw;
+        width: 98vw;
+    }
+
+    .calendrier th {
+        width: 60px;
+        font-size: 9px;
+    }
+
+    .mois {
+        font-size: 9px;
+    }
+
+    .img-action {
+        width: 9px;
+    }
+
+    #recap {
+        left: 5px;
+        top: 15px;
+        width: 130px;
+    }
+}

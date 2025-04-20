@@ -24,18 +24,10 @@ if(isset($_GET['annee']) AND preg_match("#^[0-9]{4}$#",$_GET['annee'])){//si on 
 }
 $NbrDeJour=[];
 for($mois=1;$mois<=12;$mois++) {
-	$NbrDeJour[$mois]=date("t",mktime(1,1,1,$mois,2,$annee));
+	$NbrDeJour[$mois]=date("t",mktime(0,0,0,$mois,1,$annee));
 	$PremierJourDuMois[$mois]=date("w",mktime(5,1,1,$mois,1,$annee));
 }
 ?>
-<table id="recap" style="position: relative; left: 100px; top: 710px; width:200px;">
-	<tr>
-		<td style="background:#FF8888;width:15px;height:15px;"></td><td>Réservé</td>
-	</tr>
-	<tr>
-		<td style="background:#88FF88;width:15px;height:15px;"></td><td>Disponible</td>
-	</tr>
-</table>
 <?php
 $_SESSION[$NomDeSessionAdmin]=1;
 if(isset($_SESSION[$NomDeSessionAdmin])){
@@ -60,64 +52,12 @@ if(isset($_SESSION[$NomDeSessionAdmin])){
 }
 $StyleTh="text-shadow: 1px 1px 1px #000; color:white; width:150px; border-right:1px solid black; border-bottom:1px solid black;";
 ?>
-<table style="border:1px solid black; border-collapse:collapse; box-shadow: 10px 10px 5px #888888; position: relative; margin-left: 7.5vw; width: 90vw;">
-	<caption style="font-size:18px;"><a href="?annee=<?php echo $annee-1; ?>" style="font-size:50%;vertical-align:middle;text-decoration:none;"><?php echo $annee-1; ?></a> <?php echo $annee; ?> <a href="?annee=<?php echo $annee+1; ?>" style="font-size:50%;vertical-align:middle;text-decoration:none;"><?php echo $annee+1; ?></a></caption>
-	<tr style="border-right:1px solid black;">
-					<th style="<?php echo $StyleTh; ?>background:#FF3333">Janvier</th>
-					<th style="<?php echo $StyleTh; ?>background:#FF9933">Février</th>
-					<th style="<?php echo $StyleTh; ?>background:#FFF833">Mars</th>
-					<th style="<?php echo $StyleTh; ?>background:#A7FF33">Avril</th>
-					<th style="<?php echo $StyleTh; ?>background:#3EFF30">Mai</th>
-					<th style="<?php echo $StyleTh; ?>background:#30FF83">Juin</th>
-					<th style="<?php echo $StyleTh; ?>background:#33FFEB">Juillet</th>
-					<th style="<?php echo $StyleTh; ?>background:#33A7FF">Août</th>
-					<th style="<?php echo $StyleTh; ?>background:#3341FF">Septembre</th>
-					<th style="<?php echo $StyleTh; ?>background:#8636FF">Octobre</th>
-					<th style="<?php echo $StyleTh; ?>background:#F133FF">Novembre</th>
-					<th style="<?php echo $StyleTh; ?>background:#FF33A7">Décembre</th>
-	</tr>
-	<tr>
-		<?php
-		for($mois=1;$mois<=12;$mois++) {
-			for($jour=1;$jour<=$NbrDeJour[$mois];$jour++){
-				if($jour==1){
-					echo '<td style="vertical-align:top;border-right:1px solid black;">
-							<center><table style="width:100%;border-collapse:collapse;">';
-							$Jr=$PremierJourDuMois[$mois];
-				}
-			$JourReserve=0;
-			$req = mysqli_query($mysqli,"SELECT * FROM calendrier WHERE date='".$annee."-".$mois."-".$jour."'");
-			if(mysqli_num_rows($req)>0)$JourReserve=1;
-			?>
-			<tr>
-				<td style="<?php echo $JourReserve==1?"background:#FF8888;":"background:#88FF88;"; ?>border-bottom:1px solid #eee;"><?php echo $jours[$Jr]; ?></td>
-				<td style="<?php echo $JourReserve==1?"background:#FF8888;":"background:#88FF88;"; ?>border-bottom:1px solid #eee;width:20%;"><?php echo $jour; ?></td>
-				<?php 
-				if($Jr>5){
-					$Jr=0;
-				} else {
-					$Jr++;
-				}
-				if(isset($_SESSION[$NomDeSessionAdmin])) { ?>
-				<td style="<?php echo $JourReserve==1?"background:#FF8888;":"background:#88FF88;"; ?>border-bottom:1px solid #eee;"><a href="?jour=<?php echo $jour; ?>&amp;mois=<?php echo $mois; ?>&amp;annee=<?php echo $annee; ?>&amp;choix=<?php echo $JourReserve==1?0:1; ?>#recap"><img src="../logo/<?php echo $JourReserve; ?>.png" alt="Action" style="width:13px;" title="<?php echo $JourReserve==1?"Mettre ce jour en Disponible":"Mettre ce jour en Réservé"; ?>" /></a></td>
-				<?php } ?>
-			</tr>
-			<?php
-				if($jour==$NbrDeJour[$mois]){
-					echo '</table></center>
-						</td>';
-				}
-			}
-		}
-		?>
-	</tr>
-</table>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../css/SideBar.css">
+    <link rel="stylesheet" href="../css/calendrier.css">
     <title>Calendrier de réservation</title>
     <!-- Boxicons CDN Link -->
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
@@ -208,3 +148,66 @@ $StyleTh="text-shadow: 1px 1px 1px #000; color:white; width:150px; border-right:
     </script>
 </body>
 </html>
+
+<table id="recap">
+    <tr>
+        <td class="case-reserve"></td><td>Réservé</td>
+    </tr>
+    <tr>
+        <td class="case-dispo"></td><td>Disponible</td>
+    </tr>
+</table>
+
+<table class="calendrier">
+    <caption>
+        <a href="?annee=<?= $annee-1; ?>"> <?= $annee-1; ?> </a> 
+        <?= $annee; ?> 
+        <a href="?annee=<?= $annee+1; ?>"> <?= $annee+1; ?> </a>
+    </caption>
+    <tr>
+        <?php
+        $couleurs = ["#FF3333", "#FF9933", "#FFF833", "#A7FF33", "#3EFF30", "#30FF83", "#33FFEB", "#33A7FF", "#3341FF", "#8636FF", "#F133FF", "#FF33A7"];
+        for ($mois = 1; $mois <= 12; $mois++) {
+            echo '<th style="background:' . $couleurs[$mois-1] . '">' . 
+                    date("F", mktime(0, 0, 0, $mois, 1)) . 
+                 '</th>';
+        }
+        ?>
+    </tr>
+    <tr>
+        <?php
+        for ($mois = 1; $mois <= 12; $mois++) {
+            for ($jour = 1; $jour <= $NbrDeJour[$mois]; $jour++) {
+                if ($jour == 1) {
+                    echo '<td><center><table class="mois">';
+                    $Jr = $PremierJourDuMois[$mois];
+                }
+                $JourReserve = 0;
+                $req = mysqli_query($mysqli, "SELECT * FROM calendrier WHERE date='" . $annee . "-" . $mois . "-" . $jour . "'");
+                if (mysqli_num_rows($req) > 0) $JourReserve = 1;
+                ?>
+                <tr>
+                    <td class="<?= $JourReserve ? 'reserve' : 'dispo'; ?>"><?= $jours[$Jr]; ?></td>
+                    <td class="<?= $JourReserve ? 'reserve' : 'dispo'; ?>"><?= $jour; ?></td>
+                    <?php if (isset($_SESSION[$NomDeSessionAdmin])) { ?>
+                        <td class="<?= $JourReserve ? 'reserve' : 'dispo'; ?>">
+                            <a href="?jour=<?= $jour; ?>&mois=<?= $mois; ?>&annee=<?= $annee; ?>&choix=<?= $JourReserve ? 0 : 1; ?>#recap">
+                                <img src="../logo/<?= $JourReserve; ?>.png" alt="Action" class="img-action" title="<?= $JourReserve ? "Mettre disponible" : "Mettre réservé"; ?>" />
+                            </a>
+                        </td>
+                    <?php } ?>
+                </tr>
+                <?php
+                if ($Jr > 5) {
+                    $Jr = 0;
+                } else {
+                    $Jr++;
+                }
+                if ($jour == $NbrDeJour[$mois]) {
+                    echo '</table></center></td>';
+                }
+            }
+        }
+        ?>
+    </tr>
+</table>

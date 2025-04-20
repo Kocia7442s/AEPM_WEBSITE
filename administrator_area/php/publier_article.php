@@ -64,7 +64,7 @@ if (isset($_POST['envoyer'])) {
             ?>
             <div class="titre">
                 <label for="titre">Ajouter un titre à votre article</label>
-                <input class="input_titre" type="text" name="titre" autocomplete="off" style="width: 250px;">
+                <input class="input_titre" type="text" name="titre" autocomplete="off">
                 <br>
             </div>
             <div class="description">
