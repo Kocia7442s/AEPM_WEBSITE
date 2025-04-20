@@ -179,7 +179,7 @@ $StyleTh="text-shadow: 1px 1px 1px #000; color:white; width:150px; border-right:
         for ($mois = 1; $mois <= 12; $mois++) {
             for ($jour = 1; $jour <= $NbrDeJour[$mois]; $jour++) {
                 if ($jour == 1) {
-                    echo '<td><center><table class="mois">';
+                    echo '<td style="vertical-align: top;"><center><table class="mois">';
                     $Jr = $PremierJourDuMois[$mois];
                 }
                 $JourReserve = 0;
