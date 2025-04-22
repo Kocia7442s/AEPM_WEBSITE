@@ -288,9 +288,6 @@ body {
     .sidebar {
         width: 60px;
     }
-    .sidebar.active {
-        width: 160px; /* un peu moins large pour téléphone */
-    }
     .home_content {
         left: 60px;
         width: calc(100% - 60px);
