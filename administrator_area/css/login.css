@@ -97,3 +97,29 @@ section
     margin-bottom: 20px;
     font-weight: 600;
 }
+
+@media screen and (max-width: 430px) {
+    .container {
+        width: 300px;
+        min-height: 700px;
+        border-radius: 50px;
+    }
+    .form {
+        display: flex;
+        flex-direction: column;
+    }
+    .form h2 {
+        font-size: 30px;
+    }
+    .form .inputBox input {
+        font-size: 25px;
+        padding: 10px 15px;
+        margin-top: 10%;
+    }
+    .form .inputBox input[type="submit"] {
+        max-width: 200px;
+        display: block;
+        margin-top: 100%;
+        margin-left: 10px;
+    }
+}
