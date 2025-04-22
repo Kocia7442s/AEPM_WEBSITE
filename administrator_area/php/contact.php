@@ -29,11 +29,26 @@ try {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/SideBar.css">
+    <link rel="stylesheet" href="../css/contact.css">
     <!-- Boxicons CDN Link -->
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
     <title>Contact</title>
 </head>
 <body>
+
+    <div class="container">
+        <form>
+            <h1>Formulaire de contact</h1>
+            <input type="text" id="firstName" placeholder="Prénom" required />
+            <input type="text" id="lastName" placeholder="Nom" required />
+            <input type="email" id="email" placeholder="Email" required />
+            <input type="text" id="mobile" placeholder="Objet" required />
+            <h4>Type Your Message Here...</h4>
+            <textarea required></textarea>
+            <input type="submit" value="Envoyer" id="button" />
+        </form>
+    </div>
+
     <!--NavBar-->
     <div class="menu-btn" id="menu-btn">
         <i class='bx bx-menu'></i>
