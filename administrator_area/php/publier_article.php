@@ -1,8 +1,26 @@
 <?php
 session_start();
-$bdd = new PDO('mysql:host=localhost;dbname=espace_admin;', 'root', '');
-if(!$_SESSION['mdp']){
+
+// Si l'utilisateur n'est pas connecté, redirection vers la page de connexion
+if (!isset($_SESSION['connecte']) || $_SESSION['connecte'] !== true) {
     header('Location: login.php');
+    exit();
+}
+
+// Connexion à la base de données
+$host = 'localhost'; // Nom de l'hôte, peut être 'localhost' ou l'adresse IP du serveur
+$dbname = 'aepm'; // Remplacez par le nom de votre base de données
+$username = 'root'; // Remplacez par votre nom d'utilisateur MySQL
+$password = ''; // Remplacez par votre mot de passe MySQL
+
+try {
+    // Créer une nouvelle instance de PDO pour la connexion à la base de données
+    $bdd = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
+    // Définir le mode d'erreur de PDO pour afficher les erreurs SQL
+    $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    // En cas d'erreur, afficher un message d'erreur
+    die('Erreur de connexion à la base de données : ' . $e->getMessage());
 }
 
 // Nouvelle variable pour les messages
@@ -34,7 +52,7 @@ if (isset($_POST['envoyer'])) {
         exit();
 
     } else {
-        $_SESSION['message'] = "<p style='color:green; text-align:center;'>❌ Veuillez remplir tous les champs</p>";
+        $_SESSION['message'] = "<p style='color:red; text-align:center;'>❌ Veuillez remplir tous les champs</p>";
         header('Location: publier_article.php'); // Redirection pour éviter la double soumission
         exit();
     }
@@ -80,7 +98,6 @@ if (isset($_POST['envoyer'])) {
             <div class="button">
                 <input class="input_button" type="submit" name="envoyer">
             </div>
-            
         </box>
     </form>
 
@@ -98,11 +115,6 @@ if (isset($_POST['envoyer'])) {
         </div>
         
         <ul class="nav_list">
-            <li>
-                    <i class='bx bx-search' ></i>
-                    <input type="text" placeholder="Search...">
-                <span class="tooltip">Search</span>
-            </li>
             <li>
                 <a href="accueil.php">
                     <i class='bx bx-home' ></i>
@@ -134,9 +146,9 @@ if (isset($_POST['envoyer'])) {
             <li>
                 <a href="contact.php">
                     <i class='bx bx-message-detail'></i>
-                    <span class="links_name">contact</span>
+                    <span class="links_name">Contact</span>
                 </a>
-                <span class="tooltip">contact</span>
+                <span class="tooltip">Contact</span>
             </li>
         </ul>
         <div class="profile_content">

@@ -1,6 +1,10 @@
 <?php
 //page: calendrier.php
 session_start();//pour maintenir la session active
+if (!isset($_SESSION['connecte']) || $_SESSION['connecte'] !== true) {
+    header('Location: login.php'); // ou autre page de login
+    exit;
+}
 //connexion à la base de données:
 $BDD = array();
 $BDD['host'] = "localhost";
@@ -12,7 +16,7 @@ if(!$mysqli) {
     echo "Connexion non &eacute;tablie.";
     exit;
 }
-$NomDeSessionAdmin="mdp";//mettre ici le nom de $_SESSION de votre site quand l'administrateur est connecté
+$NomDeSessionAdmin="connecte";//mettre ici le nom de $_SESSION de votre site quand l'administrateur est connecté
 
 
 //debut calendrier
@@ -29,8 +33,7 @@ for($mois=1;$mois<=12;$mois++) {
 }
 ?>
 <?php
-$_SESSION[$NomDeSessionAdmin]=1;
-if(isset($_SESSION[$NomDeSessionAdmin])){
+if(isset($_SESSION['connecte']) && $_SESSION['connecte'] === true){
 	if(
 	isset($_GET['jour']) AND preg_match("#^[0-9]{1,2}$#",$_GET['jour']) AND
 	isset($_GET['mois']) AND preg_match("#^[0-9]{1,2}$#",$_GET['mois']) AND
@@ -189,7 +192,7 @@ $StyleTh="text-shadow: 1px 1px 1px #000; color:white; width:150px; border-right:
                 <tr>
                     <td class="<?= $JourReserve ? 'reserve' : 'dispo'; ?>"><?= $jours[$Jr]; ?></td>
                     <td class="<?= $JourReserve ? 'reserve' : 'dispo'; ?>"><?= $jour; ?></td>
-                    <?php if (isset($_SESSION[$NomDeSessionAdmin])) { ?>
+                    <?php if (isset($_SESSION[$NomDeSessionAdmin]) && $_SESSION[$NomDeSessionAdmin] === true) { ?>
                         <td class="<?= $JourReserve ? 'reserve' : 'dispo'; ?>">
                             <a href="?jour=<?= $jour; ?>&mois=<?= $mois; ?>&annee=<?= $annee; ?>&choix=<?= $JourReserve ? 0 : 1; ?>#recap">
                                 <img src="../logo/<?= $JourReserve; ?>.png" alt="Action" class="img-action" title="<?= $JourReserve ? "Mettre disponible" : "Mettre réservé"; ?>" />

@@ -1,7 +1,10 @@
 <?php
 session_start();
-if(!$_SESSION['mdp']){
+
+// Si l'utilisateur n'est pas connecté, redirection vers la page de connexion
+if (!isset($_SESSION['connecte']) || $_SESSION['connecte'] !== true) {
     header('Location: login.php');
+    exit();
 }
 ?>
 

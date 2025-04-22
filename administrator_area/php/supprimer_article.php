@@ -1,5 +1,5 @@
 <?php
-$bdd = new PDO('mysql:host=localhost;dbname=espace_admin;', 'root', '');
+$bdd = new PDO('mysql:host=localhost;dbname=aepm;', 'root', '');
 
 if(isset($_GET['id']) && !empty($_GET['id'])){
     $getid = $_GET['id'];
