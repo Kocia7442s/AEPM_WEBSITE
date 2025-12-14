@@ -24,7 +24,8 @@ $result = $mysqli->query($sql);
     <meta charset="UTF-8">
     <title>Messagerie</title>
     <link rel="stylesheet" href="./css/sidebar.css">
-    <link rel="stylesheet" href="./css/pages.css"> <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="./css/pages.css"> 
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
     <style>
         /* Petit CSS spécifique pour la table des messages */
         .msg-table {

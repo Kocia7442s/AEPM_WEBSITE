@@ -90,7 +90,7 @@ for($m=1; $m<=12; $m++) {
 <head>
     <meta charset="UTF-8">
     <title>Calendrier</title>
-    <link rel="stylesheet" href="./css/SideBar.css"> 
+    <link rel="stylesheet" href="./css/sidebar.css"> 
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="./css/pages.css">
 </head>
