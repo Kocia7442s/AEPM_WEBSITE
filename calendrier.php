@@ -83,6 +83,7 @@ for($m=1; $m<=12; $m++) {
     $PremierJourDuMois[$m] = date("w", mktime(5,1,1,$m,1,$annee));
 }
 ?>
+<?php include 'sidebar.php'; ?>
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -91,84 +92,9 @@ for($m=1; $m<=12; $m++) {
     <title>Calendrier</title>
     <link rel="stylesheet" href="./css/SideBar.css"> 
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
-    <style>
-        .cal-table { border-collapse: collapse; width: 95%; margin: 20px auto; background: white; }
-        .cal-header { color: white; text-shadow: 1px 1px 1px black; border: 1px solid #333; padding: 2px; font-size: 14px;}
-        .cal-cell { border: 1px solid #ddd; padding: 5px; text-align: center; }
-        
-        /* COULEURS */
-        .validee { background-color: #FF6666; /* Rouge */ color: white; }
-        .en_attente { background-color: #FFA500; /* Orange */ color: white; }
-        .free { background-color: #98FB98; /* Vert */ }
-        
-        a { text-decoration: none; }
-    </style>
+    <link rel="stylesheet" href="./css/pages.css">
 </head>
 <body>
-
-    <div class="sidebar">
-        <div class="logo_content">
-            <div class="logo">
-                <img class='logo_aepm' src="../logo/aepm.png" style="position:relative; height: 30px; width: 30px;" alt="Logo">
-                <div class="logo_name">AEPM WEB SITE</div>
-            </div>
-            <i class='bx bx-menu' id="btn"></i>
-        </div>
-        <ul class="nav_list">
-            <li>
-                <i class='bx bx-search' ></i>
-                <input type="text" placeholder="Search...">
-                <span class="tooltip">Search</span>
-            </li>
-            <li>
-                <a href="accueil.php">
-                    <i class='bx bx-home' ></i>
-                    <span class="links_name">Accueil</span>
-                </a>
-                <span class="tooltip">Accueil</span>
-            </li>
-            <li>
-                <a href="articles.php">
-                    <i class='bx bx-book' ></i>
-                    <span class="links_name">Articles</span>
-                </a>
-                <span class="tooltip">Articles</span>
-            </li>
-            <li>
-                <a href="publier_article.php">
-                    <i class='bx bx-plus-circle'></i>
-                    <span class="links_name">Publier article</span>
-                </a>
-                <span class="tooltip">Publier article</span>
-            </li>
-            <li>
-                <a href="calendrier.php">
-                    <i class='bx bx-calendar' ></i>
-                    <span class="links_name">Calendrier</span>
-                </a>
-                <span class="tooltip">Calendrier</span>
-            </li>
-            <li>
-                <a href="contact.php">
-                    <i class='bx bx-message-detail'></i>
-                    <span class="links_name">Contact</span>
-                </a>
-                <span class="tooltip">Contact</span>
-            </li>
-        </ul>
-        <div class="profile_content">
-            <div class="profile">
-                <div class="profile_details">
-                    <div class="name_job">
-                        <div class="name"><?php echo htmlspecialchars($_SESSION['nom']); ?></div>
-                        <div class="job"><?php echo htmlspecialchars($_SESSION['role']); ?></div>
-                    </div>
-                </div>
-                <a href="logout.php" style="color: white;"><i class='bx bx-log-out' id="log_out"></i></a>
-            </div>
-        </div>
-    </div>
-
     <div style="margin-left: 80px; padding: 20px;">
         
         <div style="margin-bottom: 20px; font-family: sans-serif;">
@@ -250,13 +176,5 @@ for($m=1; $m<=12; $m++) {
             </tr>
         </table>
     </div>
-
-    <script>
-        let btn = document.querySelector("#btn");
-        let sidebar = document.querySelector(".sidebar");
-        btn.addEventListener('click', function(){
-            sidebar.classList.toggle('active');
-        });
-    </script>
 </body>
 </html>

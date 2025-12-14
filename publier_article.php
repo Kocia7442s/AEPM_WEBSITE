@@ -66,6 +66,7 @@ if(isset($_POST['envoyer'])){
     }
 }
 ?>
+<?php include 'sidebar.php'; ?>
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -74,109 +75,9 @@ if(isset($_POST['envoyer'])){
     <title>Publier un article</title>
     <link rel="stylesheet" href="./css/sidebar.css">
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
-    <style>
-        .main-content { margin-left: 80px; padding: 20px; }
-        
-        .form-box {
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            max-width: 600px;
-            margin: 0 auto; /* Centrer le formulaire */
-        }
-        .form-group { margin-bottom: 15px; }
-        .form-group label { display: block; margin-bottom: 5px; font-weight: bold; color: #333; }
-        .form-group input[type="text"], 
-        .form-group textarea, 
-        .form-group input[type="file"] {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-        .btn-submit {
-            background-color: #33A7FF;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            width: 100%;
-        }
-        .btn-submit:hover { background-color: #007bff; }
-        .msg { padding: 10px; margin-bottom: 15px; border-radius: 5px; text-align: center;}
-        .success { background: #d4edda; color: #155724; }
-        .error { background: #f8d7da; color: #721c24; }
-    </style>
+    <link rel="stylesheet" href="./css/pages.css">
 </head>
 <body>
-
-    <div class="sidebar">
-        <div class="logo_content">
-            <div class="logo">
-                <img class='logo_aepm' src="../logo/aepm.png" style="position:relative; height: 30px; width: 30px;" alt="Logo">
-                <div class="logo_name">AEPM WEB SITE</div>
-            </div>
-            <i class='bx bx-menu' id="btn"></i>
-        </div>
-        <ul class="nav_list">
-            <li>
-                <i class='bx bx-search' ></i>
-                <input type="text" placeholder="Search...">
-                <span class="tooltip">Search</span>
-            </li>
-            <li>
-                <a href="accueil.php">
-                    <i class='bx bx-home' ></i>
-                    <span class="links_name">Accueil</span>
-                </a>
-                <span class="tooltip">Accueil</span>
-            </li>
-            <li>
-                <a href="articles.php">
-                    <i class='bx bx-book' ></i>
-                    <span class="links_name">Articles</span>
-                </a>
-                <span class="tooltip">Articles</span>
-            </li>
-            <li>
-                <a href="publier_article.php">
-                    <i class='bx bx-plus-circle'></i>
-                    <span class="links_name">Publier article</span>
-                </a>
-                <span class="tooltip">Publier article</span>
-            </li>
-            <li>
-                <a href="calendrier.php">
-                    <i class='bx bx-calendar' ></i>
-                    <span class="links_name">Calendrier</span>
-                </a>
-                <span class="tooltip">Calendrier</span>
-            </li>
-            <li>
-                <a href="contact.php">
-                    <i class='bx bx-message-detail'></i>
-                    <span class="links_name">Contact</span>
-                </a>
-                <span class="tooltip">Contact</span>
-            </li>
-        </ul>
-        <div class="profile_content">
-            <div class="profile">
-                <div class="profile_details">
-                    <div class="name_job">
-                        <div class="name"><?php echo htmlspecialchars($_SESSION['nom']); ?></div>
-                        <div class="job"><?php echo htmlspecialchars($_SESSION['role']); ?></div>
-                    </div>
-                </div>
-                <a href="logout.php" style="color: white;"><i class='bx bx-log-out' id="log_out"></i></a>
-            </div>
-        </div>
-    </div>
-
     <div class="main-content">
         <h1 style="text-align:center; margin-bottom:20px;">Nouvel Article</h1>
 
@@ -209,13 +110,5 @@ if(isset($_POST['envoyer'])){
             </form>
         </div>
     </div>
-
-    <script>
-        let btn = document.querySelector("#btn");
-        let sidebar = document.querySelector(".sidebar");
-        btn.addEventListener('click', function(){
-            sidebar.classList.toggle('active');
-        });
-    </script>
 </body>
 </html>

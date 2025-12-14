@@ -15,6 +15,7 @@ $estAdmin = (isset($_SESSION['role']) && $_SESSION['role'] === 'admin');
 $sql = "SELECT * FROM articles ORDER BY date_creation DESC";
 $result = $mysqli->query($sql);
 ?>
+<?php include 'sidebar.php'; ?>
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -22,110 +23,10 @@ $result = $mysqli->query($sql);
     <meta charset="UTF-8">
     <title>Articles</title>
     <link rel="stylesheet" href="./css/sidebar.css">
+    <link rel="stylesheet" href="./css/pages.css">
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
-    
-    <style>
-        /* CSS Spécifique pour rendre les articles jolis */
-        .main-content {
-            margin-left: 80px; /* Pour ne pas passer sous la sidebar */
-            padding: 20px;
-        }
-        .article-card {
-            background-color: white;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        .article-card img {
-            max-width: 100%; /* L'image ne dépasse pas */
-            max-height: 300px;
-            object-fit: cover;
-            border-radius: 5px;
-            margin-bottom: 15px;
-            display: block;
-        }
-        .article-card h2 { margin-top: 0; color: #333; }
-        .article-card p { color: #555; line-height: 1.6; }
-        .btn-action {
-            display: inline-block;
-            padding: 8px 15px;
-            text-decoration: none;
-            color: white;
-            border-radius: 4px;
-            font-size: 14px;
-            margin-right: 5px;
-        }
-        .btn-edit { background-color: #33A7FF; }
-        .btn-delete { background-color: #FF4F1F; }
-    </style>
 </head>
 <body>
-
-    <div class="sidebar">
-        <div class="logo_content">
-            <div class="logo">
-                <img class='logo_aepm' src="../logo/aepm.png" style="position:relative; height: 30px; width: 30px;" alt="Logo">
-                <div class="logo_name">AEPM WEB SITE</div>
-            </div>
-            <i class='bx bx-menu' id="btn"></i>
-        </div>
-        <ul class="nav_list">
-            <li>
-                <i class='bx bx-search' ></i>
-                <input type="text" placeholder="Search...">
-                <span class="tooltip">Search</span>
-            </li>
-            <li>
-                <a href="accueil.php">
-                    <i class='bx bx-home' ></i>
-                    <span class="links_name">Accueil</span>
-                </a>
-                <span class="tooltip">Accueil</span>
-            </li>
-            <li>
-                <a href="articles.php">
-                    <i class='bx bx-book' ></i>
-                    <span class="links_name">Articles</span>
-                </a>
-                <span class="tooltip">Articles</span>
-            </li>
-            <li>
-                <a href="publier_article.php">
-                    <i class='bx bx-plus-circle'></i>
-                    <span class="links_name">Publier article</span>
-                </a>
-                <span class="tooltip">Publier article</span>
-            </li>
-            <li>
-                <a href="calendrier.php">
-                    <i class='bx bx-calendar' ></i>
-                    <span class="links_name">Calendrier</span>
-                </a>
-                <span class="tooltip">Calendrier</span>
-            </li>
-            <li>
-                <a href="contact.php">
-                    <i class='bx bx-message-detail'></i>
-                    <span class="links_name">Contact</span>
-                </a>
-                <span class="tooltip">Contact</span>
-            </li>
-        </ul>
-        <div class="profile_content">
-            <div class="profile">
-                <div class="profile_details">
-                    <div class="name_job">
-                        <div class="name"><?php echo htmlspecialchars($_SESSION['nom']); ?></div>
-                        <div class="job"><?php echo htmlspecialchars($_SESSION['role']); ?></div>
-                    </div>
-                </div>
-                <a href="logout.php" style="color: white;"><i class='bx bx-log-out' id="log_out"></i></a>
-            </div>
-        </div>
-    </div>
-
     <div class="main-content">
         <h1>Actualités et Articles</h1>
         
@@ -144,7 +45,7 @@ $result = $mysqli->query($sql);
                 ?>
                 <div class="article-card">
                     <?php if(!empty($article['image'])): ?>
-                        <img src="uploads/<?= htmlspecialchars($article['image']); ?>" alt="Image article">
+                        <img src="uploads/<?= htmlspecialchars($article['image']); ?>" alt="<?= htmlspecialchars($article['titre']); ?>">
                     <?php endif; ?>
 
                     <h2><?= htmlspecialchars($article['titre']); ?></h2>
@@ -170,13 +71,5 @@ $result = $mysqli->query($sql);
         }
         ?>
     </div>
-
-    <script>
-        let btn = document.querySelector("#btn");
-        let sidebar = document.querySelector(".sidebar");
-        btn.addEventListener('click', function(){
-            sidebar.classList.toggle('active');
-        });
-    </script>
 </body>
 </html>
