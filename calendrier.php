@@ -113,68 +113,70 @@ for($m=1; $m<=12; $m++) {
             <a href="?annee=<?php echo $annee+1; ?>"><i class='bx bx-chevron-right'></i></a>
         </h2>
 
-        <table class="cal-table">
-            <tr>
-                <?php 
-                $moisNoms = ["", "Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
-                for($m=1; $m<=12; $m++) {
-                    echo "<th class='cal-header' style='background:#33A7FF'>".$moisNoms[$m]."</th>";
-                }
-                ?>
-            </tr>
-            <tr>
-                <?php for($m=1; $m<=12; $m++): ?>
-                    <td style="vertical-align:top; border:1px solid #000; padding:0;">
-                        <table style="width:100%; border-collapse:collapse;">
-                            <?php 
-                            $jourSemaine = $PremierJourDuMois[$m];
-                            for($d=1; $d<=$NbrDeJour[$m]; $d++): 
-                                
-                                $dateJour = sprintf("%04d-%02d-%02d", $annee, $m, $d);
-                                $class = "free";
-                                $isReserved = false;
+        <div class="table-responsive">
+            <table class="cal-table">
+                <tr>
+                    <?php 
+                    $moisNoms = ["", "Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
+                    for($m=1; $m<=12; $m++) {
+                        echo "<th class='cal-header' style='background:#33A7FF'>".$moisNoms[$m]."</th>";
+                    }
+                    ?>
+                </tr>
+                <tr>
+                    <?php for($m=1; $m<=12; $m++): ?>
+                        <td style="vertical-align:top; border:1px solid #000; padding:0;">
+                            <table style="width:100%; border-collapse:collapse;">
+                                <?php 
+                                $jourSemaine = $PremierJourDuMois[$m];
+                                for($d=1; $d<=$NbrDeJour[$m]; $d++): 
+                                    
+                                    $dateJour = sprintf("%04d-%02d-%02d", $annee, $m, $d);
+                                    $class = "free";
+                                    $isReserved = false;
 
-                                if (isset($datesEtat[$dateJour])) {
-                                    $isReserved = true;
-                                    $class = $datesEtat[$dateJour]; 
-                                }
-                            ?>
-                            <tr>
-                                <td class="<?php echo $class; ?>" style="border-bottom:1px solid #eee; font-size:12px;">
-                                    <?php echo $joursLabel[$jourSemaine]; ?> <?php echo $d; ?>
-                                </td>
-                                
-                                <td class="<?php echo $class; ?>" style="text-align:right; border-bottom:1px solid #eee;">
-                                    <?php if($isReserved): ?>
-                                        <?php if($estAdmin): ?>
-                                            <a href="?annee=<?php echo $annee; ?>&mois=<?php echo $m; ?>&jour=<?php echo $d; ?>&action=liberer">
-                                                <i class='bx bx-x' style='color:white; font-weight:bold;'></i>
-                                            </a>
-                                        <?php else: ?>
-                                            <i class='bx bx-lock-alt' style='color:white; font-size:10px;'></i>
-                                        <?php endif; ?>
+                                    if (isset($datesEtat[$dateJour])) {
+                                        $isReserved = true;
+                                        $class = $datesEtat[$dateJour]; 
+                                    }
+                                ?>
+                                <tr>
+                                    <td class="<?php echo $class; ?>" style="border-bottom:1px solid #eee; font-size:12px;">
+                                        <?php echo $joursLabel[$jourSemaine]; ?> <?php echo $d; ?>
+                                    </td>
+                                    
+                                    <td class="<?php echo $class; ?>" style="text-align:right; border-bottom:1px solid #eee;">
+                                        <?php if($isReserved): ?>
+                                            <?php if($estAdmin): ?>
+                                                <a href="?annee=<?php echo $annee; ?>&mois=<?php echo $m; ?>&jour=<?php echo $d; ?>&action=liberer">
+                                                    <i class='bx bx-x' style='color:white; font-weight:bold;'></i>
+                                                </a>
+                                            <?php else: ?>
+                                                <i class='bx bx-lock-alt' style='color:white; font-size:10px;'></i>
+                                            <?php endif; ?>
 
-                                    <?php else: ?>
-                                        <?php if($estAdmin): ?>
-                                            <a href="?annee=<?php echo $annee; ?>&mois=<?php echo $m; ?>&jour=<?php echo $d; ?>&action=reserver">
-                                                <i class='bx bx-plus' style='color:green; font-weight:bold;'></i>
-                                            </a>
                                         <?php else: ?>
-                                            &nbsp; 
+                                            <?php if($estAdmin): ?>
+                                                <a href="?annee=<?php echo $annee; ?>&mois=<?php echo $m; ?>&jour=<?php echo $d; ?>&action=reserver">
+                                                    <i class='bx bx-plus' style='color:green; font-weight:bold;'></i>
+                                                </a>
+                                            <?php else: ?>
+                                                &nbsp; 
+                                            <?php endif; ?>
                                         <?php endif; ?>
-                                    <?php endif; ?>
-                                </td>
-                            </tr>
-                            <?php 
-                                $jourSemaine++; 
-                                if($jourSemaine > 6) $jourSemaine = 0;
-                            endfor; 
-                            ?>
-                        </table>
-                    </td>
-                <?php endfor; ?>
-            </tr>
-        </table>
+                                    </td>
+                                </tr>
+                                <?php 
+                                    $jourSemaine++; 
+                                    if($jourSemaine > 6) $jourSemaine = 0;
+                                endfor; 
+                                ?>
+                            </table>
+                        </td>
+                    <?php endfor; ?>
+                </tr>
+            </table>
+        </div>
     </div>
 </body>
 </html>

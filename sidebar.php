@@ -1,7 +1,7 @@
 <div class="sidebar">
     <div class="logo_content">
         <div class="logo">
-            <img class='logo_aepm' src="./logo/aepm.png" style="height: 30px; width: 30px;" alt="Logo">
+            <img class='logo_aepm' src="./logo/aepm.jpg" style="height: 30px; width: 30px;" alt="Logo">
             <div class="logo_name">AEPM WEB SITE</div>
         </div>
         <i class='bx bx-menu' id="btn"></i>

@@ -1,24 +1,20 @@
-@media only screen and (max-width: 480px) {
-    body {
-      font-size: 12px;
-    }
-  }
-
-*
-{
+/* css/sidebar.css - RESPONSIVE */
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: "Poppins" , sans-serif;
 }
-body
-{
+
+body {
     position: relative;
-    min-width: 100vh;
+    min-height: 100vh;
     width: 100%;
+    overflow-x: hidden; /* Empêche le scroll horizontal indésirable */
 }
-.sidebar
-{
+
+/* --- SIDEBAR --- */
+.sidebar {
     position: fixed;
     top: 0;
     left: 0;
@@ -27,13 +23,15 @@ body
     background: #ff8a25;
     padding: 6px 14px;
     transition: all 0.5s ease;
+    z-index: 1000; /* Toujours au dessus */
 }
-.sidebar.active
-{
+
+.sidebar.active {
     width: 240px;
 }
-.sidebar .logo_content .logo
-{
+
+/* Logo & Header Sidebar */
+.sidebar .logo_content .logo {
     color: #fff;
     display: flex;
     height: 50px;
@@ -43,23 +41,23 @@ body
     pointer-events: none;
     transition: all 0.5s ease;
 }
-.sidebar.active .logo_content .logo
-{
+
+.sidebar.active .logo_content .logo {
     opacity: 1;
     pointer-events: none;
 }
-.logo_content .logo i
-{
+
+.logo_content .logo i {
     font-size: 28px;
     margin-right: 5px;
 }
-.logo_content .logo .logo_name
-{
+
+.logo_content .logo .logo_name {
     font-size: 20px;
     font-weight: 400;
 }
-.sidebar #btn
-{
+
+.sidebar #btn {
     position: absolute;
     color: #fff;
     left: 50%;
@@ -70,17 +68,19 @@ body
     text-align: center;
     line-height: 50px;
     transform: translateX(-50%);
+    cursor: pointer; /* Important pour le tactile */
 }
-.sidebar.active #btn
-{
+
+.sidebar.active #btn {
     left: 90%;
 }
-.sidebar ul
-{
+
+/* Liste des liens */
+.sidebar ul {
     margin-top: 20px;
 }
-.sidebar ul li
-{
+
+.sidebar ul li {
     position: relative;
     height: 50px;
     width: 100%;
@@ -88,8 +88,9 @@ body
     list-style: none;
     line-height: 50px;
 }
-.sidebar ul li .tooltip
-{
+
+/* Tooltip (Infobulle au survol) - Caché sur mobile */
+.sidebar ul li .tooltip {
     position: absolute;
     left: 122px;
     top: 0;
@@ -100,24 +101,28 @@ body
     background: #fff;
     line-height: 35px;
     text-align: center;
-    box-shadow: 0 5px 10px #000000;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
     transition: 0s;
     opacity: 0;
     pointer-events: none;
     display: block;
+    z-index: 1001;
 }
-.sidebar.active ul li .tooltip
-{
+
+.sidebar.active ul li .tooltip {
     display: none;
 }
-.sidebar ul li:hover .tooltip
-{
-    transition: all 0.5s ease;
-    opacity: 1;
-    top: 50%;
+
+/* Sur PC : on affiche le tooltip. Sur mobile : on l'enlève */
+@media (min-width: 768px) {
+    .sidebar ul li:hover .tooltip {
+        transition: all 0.5s ease;
+        opacity: 1;
+        top: 50%;
+    }
 }
-.sidebar ul li input
-{
+
+.sidebar ul li input {
     position: absolute;
     height: 100%;
     width: 100%;
@@ -131,21 +136,21 @@ body
     font-size: 18px;
     color: #fff;
 }
-.sidebar ul li .bx-search
-{
+
+.sidebar ul li .bx-search {
     position: absolute;
     z-index: 99;
     color: #fff;
     font-size: 22px;
     transition: all 0.5s ease;
 }
-.sidebar ul li .bx-search:hover
-{
+
+.sidebar ul li .bx-search:hover {
     background: #fff;
     color: #ffc45f;
 }
-.sidebar ul li a
-{
+
+.sidebar ul li a {
     color: #fff;
     display: flex;
     align-items: center;
@@ -154,85 +159,79 @@ body
     border-radius: 12px;
     white-space: nowrap;
 }
-.sidebar ul li a:hover
-{
+
+.sidebar ul li a:hover {
     color: #ffc45f;
     background: #fff;
 }
-.sidebar ul li i
-{
+
+.sidebar ul li i {
     height: 50px;
     min-width: 50px;
     border-radius: 12px;
     line-height: 50px;
     text-align: center;
 }
-.sidebar .links_name
-{
+
+.sidebar .links_name {
     opacity: 0;
     pointer-events: none;
     transition: all 0.5s ease;
 }
-.sidebar.active .links_name
-{
+
+.sidebar.active .links_name {
     opacity: 1;
     pointer-events: auto;
 }
-.sidebar .profile_content
-{
+
+/* Profil en bas */
+.sidebar .profile_content {
     position: absolute;
     color: #fff;
     bottom: 0;
     left: 0;
     width: 100%;
 }
-.sidebar .profile_content .profile
-{
+
+.sidebar .profile_content .profile {
     position: relative;
     padding: 10px 6px;
     height: 60px;
     background: none;
     transition: all 0.4s ease;
 }
-.sidebar.active .profile_content .profile
-{
+
+.sidebar.active .profile_content .profile {
     background: #ff4f1f;
 }
-.profile_content .profile .profile_details
-{
+
+.profile_content .profile .profile_details {
     display: flex;
     align-items: center;
     opacity: 0;
     pointer-events: none;
     white-space: nowrap;
 }
-.sidebar.active .profile .profile_details
-{
+
+.sidebar.active .profile .profile_details {
     opacity: 1;
     pointer-events: auto;
 }
-.profile .profile_details img
-{
-    height: 45px;
-    width: 45px;
-    object-fit: cover;
-    border-radius: 12px;
-}
-.profile .profile_details .name_job
-{
+
+.profile .profile_details .name_job {
     margin-left: 10px;
 }
-.profile .profile_details .name
-{
+
+.profile .profile_details .name {
     font-size: 15px;
     font-weight: 400;
 }
-.profile .profile_details .job
-{
+
+.profile .profile_details .job {
     font-size: 12px;
 }
-.profile #log_out
-{
+
+.profile #log_out {
     position: absolute;
     bottom: 5px;
     left: 50%;
@@ -245,16 +244,43 @@ body
     transition: all 0.4s ease;
     background: #ff4f1f;
 }
-.sidebar.active .profile #log_out
-{
+
+.sidebar.active .profile #log_out {
     left: 88%;
+    background: none;
 }
-.sidebar.active .profile #log_out
-{
-    background: none
-}
-.sidebar.active ~ .home_content
-{
+
+/* --- ADAPTATION MOBILE POUR LE CONTENU --- */
+/* Sur PC, on décale le contenu quand la sidebar s'ouvre */
+.sidebar.active ~ .home_content, 
+.sidebar.active ~ .main-content {
     width: calc(100% - 240px);
     left: 240px;
+}
+
+/* SUR MOBILE (Ecran < 768px) */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 78px; /* Reste petite par défaut */
+    }
+    
+    /* Quand active sur mobile, elle prend toute la largeur ou une partie, mais FLOTTE */
+    .sidebar.active {
+        width: 100%; /* Prend tout l'écran ou une bonne partie */
+        max-width: 300px;
+        box-shadow: 5px 0 15px rgba(0,0,0,0.3);
+    }
+
+    /* Le contenu NE BOUGE PAS sur mobile quand on ouvre le menu */
+    .sidebar.active ~ .home_content, 
+    .sidebar.active ~ .main-content {
+        width: 100%; /* Reste plein écran */
+        left: 0;     /* Ne se décale pas */
+        margin-left: 78px; /* Garde juste la marge de base */
+    }
+    
+    /* Masquer les tooltips sur mobile */
+    .sidebar ul li .tooltip {
+        display: none !important;
+    }
 }

@@ -64,46 +64,48 @@ $result = $mysqli->query($sql);
         
         <?php if($result->num_rows > 0): ?>
             <div style="overflow-x:auto;">
-                <table class="msg-table">
-                    <thead>
-                        <tr>
-                            <th>Date</th>
-                            <th>Expéditeur</th>
-                            <th>Sujet / Message</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php while($msg = $result->fetch_assoc()): ?>
+                <div class="table-responsive">
+                    <table class="msg-table">
+                        <thead>
                             <tr>
-                                <td class="date-col">
-                                    <?php 
-                                        // Formatage de la date (ex: 12/03/2024 à 14:30)
-                                        echo date("d/m/Y à H:i", strtotime($msg['date_envoi'])); 
-                                    ?>
-                                </td>
-                                <td class="sender-col">
-                                    <?php echo htmlspecialchars($msg['nom']); ?>
-                                    <span class="sender-email"><?php echo htmlspecialchars($msg['email']); ?></span>
-                                </td>
-                                <td>
-                                    <div class="subject-col"><?php echo htmlspecialchars($msg['sujet']); ?></div>
-                                    <div style="margin-top:5px; color:#555;">
-                                        <?php echo nl2br(htmlspecialchars($msg['contenu'])); ?>
-                                    </div>
-                                </td>
-                                <td>
-                                    <a href="mailto:<?php echo $msg['email']; ?>?subject=Réponse : <?php echo urlencode($msg['sujet']); ?>" 
-                                       class="btn-action btn-edit" 
-                                       style="background:#33A7FF;">
-                                       <i class='bx bx-reply'></i> Répondre
-                                    </a>
-                                    
-                                    </td>
+                                <th>Date</th>
+                                <th>Expéditeur</th>
+                                <th>Sujet / Message</th>
+                                <th>Action</th>
                             </tr>
-                        <?php endwhile; ?>
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            <?php while($msg = $result->fetch_assoc()): ?>
+                                <tr>
+                                    <td class="date-col">
+                                        <?php 
+                                            // Formatage de la date (ex: 12/03/2024 à 14:30)
+                                            echo date("d/m/Y à H:i", strtotime($msg['date_envoi'])); 
+                                        ?>
+                                    </td>
+                                    <td class="sender-col">
+                                        <?php echo htmlspecialchars($msg['nom']); ?>
+                                        <span class="sender-email"><?php echo htmlspecialchars($msg['email']); ?></span>
+                                    </td>
+                                    <td>
+                                        <div class="subject-col"><?php echo htmlspecialchars($msg['sujet']); ?></div>
+                                        <div style="margin-top:5px; color:#555;">
+                                            <?php echo nl2br(htmlspecialchars($msg['contenu'])); ?>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <a href="mailto:<?php echo $msg['email']; ?>?subject=Réponse : <?php echo urlencode($msg['sujet']); ?>" 
+                                        class="btn-action btn-edit" 
+                                        style="background:#33A7FF;">
+                                        <i class='bx bx-reply'></i> Répondre
+                                        </a>
+                                        
+                                        </td>
+                                </tr>
+                            <?php endwhile; ?>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         <?php else: ?>
             <p style="text-align:center; margin-top:50px; font-size:1.2em; color:#666;">
