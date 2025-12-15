@@ -30,6 +30,13 @@
             <span class="tooltip">Articles</span>
         </li>
 
+        <li>
+            <a href="galerie.php">
+                <i class='bx bx-images'></i> <span class="links_name">Galerie</span>
+            </a>
+            <span class="tooltip">Galerie</span>
+        </li>
+
         <?php if(isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
         <li>
             <a href="publier_article.php">
@@ -45,6 +52,13 @@
                 <span class="links_name">Calendrier</span>
             </a>
             <span class="tooltip">Calendrier</span>
+        </li>
+
+        <li>
+            <a href="bureau.php">
+                <i class='bx bx-group'></i> <span class="links_name">Bureau</span>
+            </a>
+            <span class="tooltip">Bureau</span>
         </li>
 
         <li>
